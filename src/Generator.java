@@ -28,6 +28,17 @@ public class Generator {
 		int b = rand.nextInt(256);
 		columnBG = new Color(r,g,b);
 		activeItem = menuBGH = mentionBadge = generateSimilarColor(columnBG);
+		activePresence = generateBrighterColor(activeItem, (float) .25);
+		hoverItem = generateBrighterColor(columnBG, (float) -.25);
+		
+		System.out.print("#"+Integer.toHexString(columnBG.getRGB()).substring(2)+",");
+		System.out.print("#"+Integer.toHexString(menuBGH.getRGB()).substring(2)+",");
+		System.out.print("#"+Integer.toHexString(activeItem.getRGB()).substring(2)+",");
+		System.out.print("#"+Integer.toHexString(activeItemText.getRGB()).substring(2)+",");
+		System.out.print("#"+Integer.toHexString(hoverItem.getRGB()).substring(2)+",");
+		System.out.print("#"+Integer.toHexString(textColor.getRGB()).substring(2)+",");
+		System.out.print("#"+Integer.toHexString(activePresence.getRGB()).substring(2)+",");
+		System.out.print("#"+Integer.toHexString(mentionBadge.getRGB()).substring(2)+"");
 		
 	}
 	
@@ -43,6 +54,19 @@ public class Generator {
         
         return new Color(r,g,b);
 
+	}
+	
+	public Color generateBrighterColor(Color c, float percentBrighter){
+		//Generate the values percentBrighter percent brighter
+		int r = (int) ((int) c.getRed() * (1+percentBrighter));
+		int g = (int) ((int) c.getGreen() * (1+percentBrighter));
+		int b = (int) ((int) c.getBlue() * (1+percentBrighter));
+		return new Color(colorMax(r),colorMax(g),colorMax(b));
+	}
+	
+	public int colorMax(int val){
+		if (val>255) return 255;
+		return val;
 	}
 	
 	
