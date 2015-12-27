@@ -16,21 +16,33 @@ public class Generator {
 	private Color activeItem;
 	private Color activeItemText = new Color(0,0,0); //Text should always be white
 	private Color hoverItem;
-	private Color textColor;
+	private Color textColor = new Color(0,0,0);
 	private Color activePresence;
 	private Color mentionBadge;
 
 	
 	
 	public Generator(){
-		int r = rand.nextInt(255);
-		int g = rand.nextInt(255);
-		int b = rand.nextInt(255);
-		menuBGH = new Color(r,g,b);
+		int r = rand.nextInt(256);
+		int g = rand.nextInt(256);
+		int b = rand.nextInt(256);
+		columnBG = new Color(r,g,b);
+		activeItem = menuBGH = mentionBadge = generateSimilarColor(columnBG);
+		
 	}
 	
 	public Color generateSimilarColor(Color c){
-		return null;
+		int r = rand.nextInt(256);
+		int g = rand.nextInt(256);
+		int b = rand.nextInt(256);
+		
+		//Normalize the color (mix)
+		r = (r + c.getRed()) / 2;
+        g = (g + c.getGreen()) / 2;
+        b = (b + c.getBlue()) / 2;
+        
+        return new Color(r,g,b);
+
 	}
 	
 	
