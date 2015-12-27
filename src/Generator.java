@@ -27,10 +27,10 @@ public class Generator {
 		int g = rand.nextInt(256);
 		int b = rand.nextInt(256);
 		columnBG = new Color(r,g,b);
-		activeItem = menuBGH = mentionBadge = generateSimilarColor(columnBG);
+		activeItem = menuBGH = mentionBadge = generateComplement(columnBG);
 		activePresence = generateBrighterColor(activeItem, (float) .25);
 		hoverItem = generateBrighterColor(columnBG, (float) -.25);
-		
+		columnBG = generateBrighterColor(columnBG,(float)-.15);
 		System.out.print("#"+Integer.toHexString(columnBG.getRGB()).substring(2)+",");
 		System.out.print("#"+Integer.toHexString(menuBGH.getRGB()).substring(2)+",");
 		System.out.print("#"+Integer.toHexString(activeItem.getRGB()).substring(2)+",");
@@ -42,20 +42,25 @@ public class Generator {
 		
 	}
 	
-	public Color generateSimilarColor(Color c){
-		int r = rand.nextInt(256);
-		int g = rand.nextInt(256);
-		int b = rand.nextInt(256);
+	//Generate a complemenatry color
+	public Color generateComplement(Color c){
+		float[] hsv = new float[3];
+		Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), hsv);
+		if (hsv[0]>180) hsv[0] = hsv[0]-180;
+		else hsv[0]+=180;
 		
-		//Normalize the color (mix)
-		r = (r + c.getRed()) / 2;
-        g = (g + c.getGreen()) / 2;
-        b = (b + c.getBlue()) / 2;
-        
-        return new Color(r,g,b);
-
+		int argb = Color.HSBtoRGB(hsv[0], hsv[1], hsv[2]);
+		int r = (argb)&0xFF;
+		int g = (argb>>8)&0xFF;
+		int b = (argb>>16)&0xFF;
+		return new Color(r,g,b);
 	}
 	
+	
+	/*
+	 * @param	c: The current color object
+	 * @param	percentBrighter: The percent brighter or darker
+	 */
 	public Color generateBrighterColor(Color c, float percentBrighter){
 		//Generate the values percentBrighter percent brighter
 		int r = (int) ((int) c.getRed() * (1+percentBrighter));
@@ -64,6 +69,7 @@ public class Generator {
 		return new Color(colorMax(r),colorMax(g),colorMax(b));
 	}
 	
+	//Make sure the value isn't greater than 255
 	public int colorMax(int val){
 		if (val>255) return 255;
 		return val;
