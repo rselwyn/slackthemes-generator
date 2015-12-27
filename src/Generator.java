@@ -11,9 +11,10 @@ public class Generator {
 	 * Each of these arrays corresponds to one of the fields for slack
 	 */
 	private Color columnBG;
+	//menuBGH and activeItem will always be the same
 	private Color menuBGH;
 	private Color activeItem;
-	private Color activeItemText;; //Text should always be white
+	private Color activeItemText = new Color(0,0,0); //Text should always be white
 	private Color hoverItem;
 	private Color textColor;
 	private Color activePresence;
@@ -21,9 +22,16 @@ public class Generator {
 
 	
 	
-	//Constructor if no restrictions on color
 	public Generator(){
-
+		int r = rand.nextInt(255);
+		int g = rand.nextInt(255);
+		int b = rand.nextInt(255);
+		menuBGH = activeItem = new Color(r,g,b);
 	}
+	
+	public Color generateSimilarColor(Color c){
+		return null;
+	}
+	
 	
 }
