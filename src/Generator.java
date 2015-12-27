@@ -26,23 +26,4 @@ public class Generator {
 
 	}
 	
-	
-	/*
-	 * Constructor if restrictions on the colors
-	 * @param	rlow: The low value of the range for the red value
-	 * @param	rhigh: The high value of the range for the red value
-	 * @param	glow: The low value of the range for the green value
-	 * @param	ghigh: The high value of the range for the green value
-	 * @param	blow: The low value of the range for the blue value
-	 * @param	glow: The high value of the range for the blue value
-	 */
-	public Generator(int rlow, int rhigh, int glow, int ghigh, int blow, int bhigh){
-
-		
-	}
-	
-	public int generateValidValue(int lowRange, int highRange){
-		return rand.nextInt(highRange-lowRange)+lowRange;
-	}
-	
 }
