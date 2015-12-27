@@ -26,7 +26,7 @@ public class Generator {
 		int r = rand.nextInt(255);
 		int g = rand.nextInt(255);
 		int b = rand.nextInt(255);
-		menuBGH = activeItem = new Color(r,g,b);
+		menuBGH = new Color(r,g,b);
 	}
 	
 	public Color generateSimilarColor(Color c){
