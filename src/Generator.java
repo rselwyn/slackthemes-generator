@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -5,14 +6,18 @@ public class Generator {
 	
 	//Number generator
 	private Random rand = new Random();
-	private int[] columnBG = new int[3];
-	private int[] menuBGH = new int[3];
-	private int[] activeItem = new int[3];
-	private int[] activeItemText = new int[3];
-	private int[] hoverItem = new int[3];
-	private int[] textColor = new int[3];
-	private int[] activePresence = new int[3];
-	private int[] mentionBadge = new int[3];
+	
+	/*
+	 * Each of these arrays corresponds to one of the fields for slack
+	 */
+	private Color columnBG;
+	private Color menuBGH;
+	private Color activeItem;
+	private Color activeItemText;; //Text should always be white
+	private Color hoverItem;
+	private Color textColor;
+	private Color activePresence;
+	private Color mentionBadge;
 
 	
 	
